@@ -108,7 +108,7 @@
             button5.Name = "button5";
             button5.Size = new Size(305, 45);
             button5.TabIndex = 2;
-            button5.Text = "문제 은행";
+            button5.Text = "시험 통계";
             button5.UseVisualStyleBackColor = true;
             // 
             // groupBox3

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BMS.Data
 {
-    public class GradingInfo
+    public class GradeInfo
     {
         public int ExamId { get; set; }
         public string ExamineeId { get; set; }
