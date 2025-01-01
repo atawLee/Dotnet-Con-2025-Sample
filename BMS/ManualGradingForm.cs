@@ -1,4 +1,5 @@
-﻿using BMS.Data;
+﻿using BMS.Business;
+using BMS.Data;
 using Newtonsoft.Json;
 // ReSharper disable All
 
@@ -8,6 +9,9 @@ public partial class ManualGradingForm : UserControl
 {
     private readonly List<ExamInfo> _gradeProgressList = new(100);
     private readonly List<GradeInfo> _gradingInfoList = new(100);
+    private readonly GradeService _service = new();
+    private GradeInfoDetail _detailInfo;
+
     public ManualGradingForm()
     {
         InitializeComponent();
@@ -16,7 +20,7 @@ public partial class ManualGradingForm : UserControl
 
     private async void btnSearch_Click(object sender, EventArgs e)
     {
-        
+        var data = await _service.GetExamInformationList();
         _gradeProgressList.Clear();
         _gradeProgressList.AddRange(data);
     }
@@ -24,11 +28,7 @@ public partial class ManualGradingForm : UserControl
     private async void datagridGradeProgressList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
         var gradeProgressInfo = _gradeProgressList[e.RowIndex];
-        HttpClient client = new HttpClient();
-        var result = await client.GetAsync("https://sampledata");
-        result.EnsureSuccessStatusCode();
-        var json = await result.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<List<GradeInfo>>(json);
+        var data = await _service.GetGradingInfoList(gradeProgressInfo.ExamineeId);
         _gradingInfoList.Clear();
         _gradingInfoList.AddRange(data);
         this.tabControl1.SelectedIndex = 1;
@@ -41,8 +41,28 @@ public partial class ManualGradingForm : UserControl
         }
     }
 
-    private void datagridAnswer_SelectionChanged(object sender, EventArgs e)
+    private async void datagridAnswer_SelectionChanged(object sender, EventArgs e)
     {
+        if (datagridAnswer.SelectedRows.Count != 0) return;
 
+        GradeInfo selectedData = _gradingInfoList[datagridAnswer.SelectedRows[0].Index];
+        _detailInfo = await _service.GetGradingDetail(selectedData);
+
+        var answer = _detailInfo.Answer;
+        var question = _detailInfo.Question;
+
+        txtNote.Text = _detailInfo?.Note ?? "";
+        numScore.Value = _detailInfo?.Score ?? 0;
+        txtScoringRubric.Text = question.ScoringRubric;
+        txtQuestion.Text = question.Text ?? "";
+        txtAnswer.Text = answer.AnswerText;
+    }
+
+    private async void btSave_Click(object sender, EventArgs e)
+    {
+        _detailInfo.Score = (int)numScore.Value;
+        _detailInfo.Note = txtNote.Text;
+        
+        await _service.SaveGrade(_detailInfo);
     }
 }
