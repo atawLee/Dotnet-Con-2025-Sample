@@ -12,7 +12,7 @@ namespace BMS
 {
     public partial class FormMain : Form
     {
-        public FormMain()
+        public FormMain(ManualGradingForm frm)
         {
             InitializeComponent();
 

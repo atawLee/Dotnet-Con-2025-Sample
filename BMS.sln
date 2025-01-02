@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.Business", "BMS.Busines
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.Repository", "BMS.Repository\BMS.Repository.csproj", "{B3C84262-FA9F-4945-80C6-610F39B7C177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.WPF", "BMS.WPF\BMS.WPF.csproj", "{9906F59B-896C-462F-B419-35C43F8A2A5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B3C84262-FA9F-4945-80C6-610F39B7C177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3C84262-FA9F-4945-80C6-610F39B7C177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3C84262-FA9F-4945-80C6-610F39B7C177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9906F59B-896C-462F-B419-35C43F8A2A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9906F59B-896C-462F-B419-35C43F8A2A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9906F59B-896C-462F-B419-35C43F8A2A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9906F59B-896C-462F-B419-35C43F8A2A5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,17 +1,26 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace BMS
 {
-    internal static class Program
+    public static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static IServiceProvider MainServiceProvider { get; private set; }
+        
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var host = Host.CreateApplicationBuilder();
+            host.Services.AddSingleton<FormMain>();
+            host.Services.AddSingleton<ManualGradingForm>();
+
+            var app = host.Build();
+            MainServiceProvider = app.Services;
+
+            var main = MainServiceProvider.GetRequiredService<FormMain>();
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormMain());
+            Application.Run(main);
         }
     }
 }
