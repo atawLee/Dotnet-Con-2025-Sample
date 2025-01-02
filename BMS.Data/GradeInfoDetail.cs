@@ -15,4 +15,6 @@ public class GradeInfoDetail
     public int Score { get; set; }
     public string Note { get; set; }
     public int IsGraded { get; set; }
+
+    public DateTime GradedAt { get; set; }
 }
