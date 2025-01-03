@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BMS.Data;
 
 namespace BMS.WPF
 {
@@ -19,6 +20,11 @@ namespace BMS.WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            UserProfile userProfile = new();
+            
+            System.Windows.Controls.Image img = new();
+            
         }
     }
 }
