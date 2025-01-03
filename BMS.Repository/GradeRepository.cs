@@ -1,10 +1,45 @@
-﻿using BMS.Data;
+﻿using System.Net.Http.Headers;
+using BMS.Data;
 using System.Text;
 using Newtonsoft.Json;
 
 namespace BMS.Repository;
 
-public class GradeRepository
+public interface IGradeRepository
+{
+    Task<List<ExamInfo>> GetExamInformationList();
+    Task<List<GradeInfo>> GetGradingInfoList(string examineeId);
+    Task<GradeInfoDetail> GetGradingDetail(GradeInfo gradeInfo);
+    Task SaveGrade(GradeInfoDetail detail);
+}
+
+public class StubGradeRepository : IGradeRepository
+{
+    private List<ExamInfo> examInfos = new();
+    private List<GradeInfo> gradeInfos = new();
+    private List<GradeInfoDetail> gradeInfoDetails = new();
+    public Task<List<ExamInfo>> GetExamInformationList()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<GradeInfo>> GetGradingInfoList(string examineeId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<GradeInfoDetail> GetGradingDetail(GradeInfo gradeInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task SaveGrade(GradeInfoDetail detail)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class GradeRepository : IGradeRepository
 {
     public GradeRepository()
     {
@@ -47,3 +82,4 @@ public class GradeRepository
         result.EnsureSuccessStatusCode();
     }
 }
+

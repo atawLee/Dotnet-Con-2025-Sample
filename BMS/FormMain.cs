@@ -25,9 +25,6 @@ namespace BMS
             var form = Program.MainServiceProvider.GetRequiredService<ManualGradingForm>();
             form.Dock = DockStyle.Fill;
             this.mainConntent.Controls.Add(form);
-
-            UserProfile profile = new();
-            this.pbxUserProfile.Image = profile.ProfileImage;
         }
     }
 }

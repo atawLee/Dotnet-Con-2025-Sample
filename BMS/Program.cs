@@ -1,4 +1,5 @@
 using BMS.Business.Service;
+using BMS.Business.State;
 using BMS.Repository;
 using BMS.Winform;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +14,13 @@ namespace BMS
         [STAThread]
         static void Main()
         {
+            ApplicationConfiguration.Initialize();
             var host = Host.CreateApplicationBuilder();
             host.Services.AddSingleton<FormMain>();
             host.Services.AddSingleton<ManualGradingForm>();
             host.Services.AddTransient<ManualGradingPresenter>();
             host.Services.AddTransient<GradeService>();
+            host.Services.AddTransient<GradeHistoryState>();
             host.Services.AddTransient<GradeRepository>();
 
             var app = host.Build();
@@ -25,7 +28,7 @@ namespace BMS
 
             var main = MainServiceProvider.GetRequiredService<FormMain>();
 
-            ApplicationConfiguration.Initialize();
+            
             Application.Run(main);
         }
     }
