@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BMS.Data;
+using BMS.Domain.Entity;
 
 namespace BMS.Business.State;
 
@@ -14,5 +15,6 @@ public class GradeHistoryState
     {
         GradeInfoDetails.Add(detail);
     }
+
     public int Count => GradeInfoDetails.Count;
 }
