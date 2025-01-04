@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.Winform", "BMS\BMS.Winform.csproj", "{B24229C3-F5D4-4DE4-8407-648ABC77D31F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{332F45ED-BD85-4976-873D-8C6FB57A7911}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{332F45ED-BD85-4976-873D-8C6FB57A7911}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.Business", "BMS.Business\BMS.Business.csproj", "{7F5D3D93-86DD-4B9D-B562-DB9846874915}"
 EndProject
