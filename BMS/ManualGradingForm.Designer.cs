@@ -151,9 +151,13 @@
             // 
             // datagridAnswer
             // 
+            datagridAnswer.AllowUserToAddRows = false;
+            datagridAnswer.AllowUserToDeleteRows = false;
             datagridAnswer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             datagridAnswer.Location = new Point(6, 6);
             datagridAnswer.Name = "datagridAnswer";
+            datagridAnswer.ReadOnly = true;
+            datagridAnswer.RowHeadersVisible = false;
             datagridAnswer.RowHeadersWidth = 82;
             datagridAnswer.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             datagridAnswer.Size = new Size(477, 1080);

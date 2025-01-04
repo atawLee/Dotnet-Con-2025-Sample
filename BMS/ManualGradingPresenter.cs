@@ -32,7 +32,8 @@ public class ManualGradingPresenter
 
     public async Task SelectExamData(string examineeId)
     {
-        await _service.GetGradingInfoList(examineeId);
+        var data = await _service.GetGradingInfoList(examineeId);
+        _view.UpdateGradingInfoList(data);
         _view.SetTab(1);
         _view.InitGridAnswerSelection();
     }

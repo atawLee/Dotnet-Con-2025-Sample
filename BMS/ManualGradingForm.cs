@@ -17,6 +17,7 @@ public partial class ManualGradingForm : UserControl
     public ManualGradingForm(ManualGradingPresenter presenter)
     {
         _presenter = presenter;
+        _presenter.SetView(this);
         InitializeComponent();
         datagridGradeProgressList.DataSource = _examInfoList;
         datagridAnswer.DataSource = _gradingInfoList;
@@ -61,7 +62,7 @@ public partial class ManualGradingForm : UserControl
 
     private async void datagridAnswer_SelectionChanged(object sender, EventArgs e)
     {
-        if (datagridAnswer.SelectedRows.Count != 0) return;
+        if (datagridAnswer.SelectedRows ==null ||  datagridAnswer.SelectedRows.Count == 0) return;
 
         GradeInfo selectedData = _gradingInfoList[datagridAnswer.SelectedRows[0].Index];
         await _presenter.SelectGradeInfo(selectedData);

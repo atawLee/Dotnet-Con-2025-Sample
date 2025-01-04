@@ -11,10 +11,10 @@ namespace BMS.Business.Service;
 /// </summary>
 public class GradeService
 {
-    private readonly GradeRepository _repository;
+    private readonly IGradeRepository _repository;
     private readonly GradeHistoryState _state;
 
-    public GradeService(GradeRepository repository, GradeHistoryState state)
+    public GradeService(IGradeRepository repository, GradeHistoryState state)
     {
         _repository = repository;
         _state = state;

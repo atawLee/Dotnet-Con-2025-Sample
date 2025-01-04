@@ -21,7 +21,7 @@ namespace BMS
             host.Services.AddTransient<ManualGradingPresenter>();
             host.Services.AddTransient<GradeService>();
             host.Services.AddTransient<GradeHistoryState>();
-            host.Services.AddTransient<GradeRepository>();
+            host.Services.AddTransient<IGradeRepository,StubGradeRepository>();
 
             var app = host.Build();
             MainServiceProvider = app.Services;
