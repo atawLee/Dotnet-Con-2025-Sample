@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BMS.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1280" Width="1920">
+        Title="MainWindow" Height="1280" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180" />
@@ -19,8 +19,12 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Image x:Name="img"></Image>
+            <StackPanel Orientation="Vertical">
+                <Button Style="{DynamicResource AccentButtonStyle}" Content="수동 채점" />
+            </StackPanel>
+            
             
         </Grid>
+        <ContentControl  Grid.Column="1" Content="{Binding MainContent}"></ContentControl>
     </Grid>
 </Window>

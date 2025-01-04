@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BMS.Data;
+using BMS.WPF.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace BMS.WPF
@@ -22,10 +24,8 @@ namespace BMS.WPF
         {
             InitializeComponent();
 
-            UserProfile userProfile = new();
-            
-            System.Windows.Controls.Image img = new();
-            
+            var vm = App.MainServiceProvider.GetRequiredService<MainWindowViewModel>();
+            this.DataContext = vm;
         }
     }
 }

@@ -16,15 +16,15 @@ namespace BMS
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            var host = Host.CreateApplicationBuilder();
-            host.Services.AddSingleton<FormMain>();
-            host.Services.AddSingleton<ManualGradingForm>();
-            host.Services.AddTransient<ManualGradingPresenter>();
-            host.Services.AddTransient<GradeService>();
-            host.Services.AddTransient<GradeHistoryState>();
-            host.Services.AddTransient<IGradeRepository,StubGradeRepository>();
+            var builder = Host.CreateApplicationBuilder();
+            builder.Services.AddSingleton<FormMain>();
+            builder.Services.AddSingleton<ManualGradingForm>();
+            builder.Services.AddTransient<ManualGradingPresenter>();
+            builder.Services.AddTransient<GradeService>();
+            builder.Services.AddTransient<GradeHistoryState>();
+            builder.Services.AddTransient<IGradeRepository,StubGradeRepository>();
 
-            var app = host.Build();
+            var app = builder.Build();
             MainServiceProvider = app.Services;
 
             var main = MainServiceProvider.GetRequiredService<FormMain>();
