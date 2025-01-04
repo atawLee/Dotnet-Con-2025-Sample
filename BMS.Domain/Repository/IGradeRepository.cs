@@ -1,6 +1,7 @@
 ﻿using BMS.Data;
+using BMS.Domain.Entity;
 
-namespace BMS.Repository;
+namespace BMS.Domain.Repository;
 
 public interface IGradeRepository
 {

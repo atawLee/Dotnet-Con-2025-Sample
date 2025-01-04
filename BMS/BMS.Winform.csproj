@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BMS.Business\BMS.Business.csproj" />
-    <ProjectReference Include="..\BMS.Data\BMS.Data.csproj" />
+    <ProjectReference Include="..\BMS.Repository\BMS.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

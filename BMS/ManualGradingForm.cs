@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using BMS.Business.Service;
 using BMS.Data;
+using BMS.Domain.Entity;
 using BMS.Winform;
 using Newtonsoft.Json;
 // ReSharper disable All

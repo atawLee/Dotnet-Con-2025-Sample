@@ -1,7 +1,8 @@
 ﻿using System.Text;
 using BMS.Business.State;
 using BMS.Data;
-using BMS.Repository;
+using BMS.Domain.Entity;
+using BMS.Domain.Repository;
 using Newtonsoft.Json;
 
 namespace BMS.Business.Service;

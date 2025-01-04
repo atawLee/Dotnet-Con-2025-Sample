@@ -1,5 +1,6 @@
 using BMS.Business.Service;
 using BMS.Business.State;
+using BMS.Domain.Repository;
 using BMS.Repository;
 using BMS.Winform;
 using Microsoft.Extensions.DependencyInjection;

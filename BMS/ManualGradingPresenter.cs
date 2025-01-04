@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BMS.Business.Service;
 using BMS.Data;
+using BMS.Domain.Entity;
 
 namespace BMS.Winform;
 
