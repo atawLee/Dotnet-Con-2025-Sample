@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
+using BMS.Business.Service;
 using BMS.Data;
+using BMS.Domain.Entity;
+using BMS.Winform;
 using Newtonsoft.Json;
 // ReSharper disable All
 
@@ -15,38 +10,50 @@ namespace BMS;
 
 public partial class ManualGradingForm : UserControl
 {
-    private readonly List<ExamInformation> _gradeProgressList = new(100);
-    private readonly List<GradingInfo> _gradingInfoList = new(100);
-    public ManualGradingForm()
+    private readonly ManualGradingPresenter _presenter;
+    private readonly BindingList<ExamInfo> _examInfoList = new();
+    private readonly BindingList<GradeInfo> _gradingInfoList = new();
+    private GradeInfoDetail _detailInfo;
+
+    public ManualGradingForm(ManualGradingPresenter presenter)
     {
+        _presenter = presenter;
+        _presenter.SetView(this);
         InitializeComponent();
-        datagridGradeProgressList.DataSource = _gradeProgressList;
+        datagridGradeProgressList.DataSource = _examInfoList;
+        datagridAnswer.DataSource = _gradingInfoList;
     }
 
     private async void btnSearch_Click(object sender, EventArgs e)
     {
-        HttpClient client = new HttpClient();
-        var result = await client.GetAsync("https://sampledata");
-        result.EnsureSuccessStatusCode();
-        var json = await result.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<List<ExamInformation>>(json);
-        _gradeProgressList.Clear();
-        _gradeProgressList.AddRange(data);
+        await _presenter.SearchExamInfo();
+    }
+
+    public void UpdateExamInfoList(List<ExamInfo> data)
+    {
+        _examInfoList.Clear();
+        data.ForEach(examInfo=>_examInfoList.Add(examInfo));
     }
 
     private async void datagridGradeProgressList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
-        var gradeProgressInfo = _gradeProgressList[e.RowIndex];
-        HttpClient client = new HttpClient();
-        var result = await client.GetAsync("https://sampledata");
-        result.EnsureSuccessStatusCode();
-        var json = await result.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<List<GradingInfo>>(json);
-        _gradingInfoList.Clear();
-        _gradingInfoList.AddRange(data);
-        this.tabControl1.SelectedIndex = 1;
+        var gradeProgressInfo = _examInfoList[e.RowIndex];
+        await _presenter.SelectExamData(gradeProgressInfo.ExamineeId);
+    }
 
-        // 첫 번째 행 선택
+    public void UpdateGradingInfoList(List<GradeInfo> data)
+    {
+        _gradingInfoList.Clear();
+        data.ForEach(gradeInfo => _gradingInfoList.Add(gradeInfo));
+    }
+
+    public void SetTab(int index)
+    {
+        this.tabControl1.SelectedIndex = index;
+    }
+
+    public void InitGridAnswerSelection()
+    {
         if (datagridAnswer.Rows.Count > 0)
         {
             datagridAnswer.Rows[0].Selected = true;  // 첫 번째 행 선택
@@ -54,8 +61,33 @@ public partial class ManualGradingForm : UserControl
         }
     }
 
-    private void datagridAnswer_SelectionChanged(object sender, EventArgs e)
+    private async void datagridAnswer_SelectionChanged(object sender, EventArgs e)
     {
+        if (datagridAnswer.SelectedRows ==null ||  datagridAnswer.SelectedRows.Count == 0) return;
 
+        GradeInfo selectedData = _gradingInfoList[datagridAnswer.SelectedRows[0].Index];
+        await _presenter.SelectGradeInfo(selectedData);
+    }
+
+    public void UpdateGradeDetail(GradeInfoDetail info)
+    {
+        this._detailInfo = info;
+        var answer = info.Answer;
+        var question = info.Question;
+
+        txtNote.Text = info?.Note ?? "";
+        numScore.Value = info?.Score ?? 0;
+        txtScoringRubric.Text = question.ScoringRubric;
+        txtQuestion.Text = question.Text ?? "";
+        txtAnswer.Text = answer.AnswerText;
+    }
+
+    private async void btSave_Click(object sender, EventArgs e)
+    {
+        _detailInfo.Score = (int)numScore.Value;
+        _detailInfo.Note = txtNote.Text;
+        
+        await _presenter.SaveGrade(_detailInfo);
+        MessageBox.Show("저장되었습니다.");
     }
 }

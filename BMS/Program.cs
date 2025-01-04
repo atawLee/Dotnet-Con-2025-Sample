@@ -1,17 +1,36 @@
+using BMS.Business.Service;
+using BMS.Business.State;
+using BMS.Domain.Repository;
+using BMS.Repository;
+using BMS.Winform;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace BMS
 {
-    internal static class Program
+    public static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static IServiceProvider MainServiceProvider { get; private set; }
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormMain());
+            var builder = Host.CreateApplicationBuilder();
+            builder.Services.AddSingleton<FormMain>();
+            builder.Services.AddSingleton<ManualGradingForm>();
+            builder.Services.AddTransient<ManualGradingPresenter>();
+            builder.Services.AddTransient<GradeService>();
+            builder.Services.AddTransient<GradeHistoryState>();
+            builder.Services.AddTransient<IGradeRepository,StubGradeRepository>();
+
+            var app = builder.Build();
+            MainServiceProvider = app.Services;
+
+            var main = MainServiceProvider.GetRequiredService<FormMain>();
+
+            
+            Application.Run(main);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace BMS.Data;
 
-public class ExamInformation
+public class ExamInfo
 {
     public string ExamineeId { get; set; }          // 응시자 ID
     public string ExamTitle { get; set; }           // 시험 제목

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BMS.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BMS
 {
@@ -15,8 +17,12 @@ namespace BMS
         public FormMain()
         {
             InitializeComponent();
+        }
 
-            var form = new ManualGradingForm();
+        private void btnManualGrade_Click(object sender, EventArgs e)
+        {
+            this.mainConntent.Controls.Clear();
+            var form = Program.MainServiceProvider.GetRequiredService<ManualGradingForm>();
             form.Dock = DockStyle.Fill;
             this.mainConntent.Controls.Add(form);
         }

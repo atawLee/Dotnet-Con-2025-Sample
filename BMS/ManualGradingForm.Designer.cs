@@ -35,19 +35,18 @@
             label1 = new Label();
             datagridGradeProgressList = new DataGridView();
             tabPage2 = new TabPage();
-            groupBox1 = new GroupBox();
             btSave = new Button();
             datagridAnswer = new DataGridView();
             panel3 = new Panel();
-            numericUpDown1 = new NumericUpDown();
-            textBox1 = new TextBox();
+            numScore = new NumericUpDown();
+            txtScoringRubric = new TextBox();
             label6 = new Label();
             txtNote = new TextBox();
             label5 = new Label();
             label4 = new Label();
             panel2 = new Panel();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txtAnswer = new TextBox();
+            txtQuestion = new TextBox();
             label3 = new Label();
             label2 = new Label();
             tabControl1.SuspendLayout();
@@ -56,7 +55,7 @@
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)datagridAnswer).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numScore).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -128,7 +127,6 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(groupBox1);
             tabPage2.Controls.Add(btSave);
             tabPage2.Controls.Add(datagridAnswer);
             tabPage2.Controls.Add(panel3);
@@ -141,15 +139,6 @@
             tabPage2.Text = "채점 진행";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(6, 6);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(477, 386);
-            groupBox1.TabIndex = 5;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "응시 정보";
-            // 
             // btSave
             // 
             btSave.Location = new Point(1278, 1103);
@@ -158,23 +147,28 @@
             btSave.TabIndex = 4;
             btSave.Text = "Save";
             btSave.UseVisualStyleBackColor = true;
+            btSave.Click += btSave_Click;
             // 
             // datagridAnswer
             // 
+            datagridAnswer.AllowUserToAddRows = false;
+            datagridAnswer.AllowUserToDeleteRows = false;
             datagridAnswer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            datagridAnswer.Location = new Point(6, 398);
+            datagridAnswer.Location = new Point(6, 6);
             datagridAnswer.Name = "datagridAnswer";
+            datagridAnswer.ReadOnly = true;
+            datagridAnswer.RowHeadersVisible = false;
             datagridAnswer.RowHeadersWidth = 82;
             datagridAnswer.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            datagridAnswer.Size = new Size(477, 688);
+            datagridAnswer.Size = new Size(477, 1080);
             datagridAnswer.TabIndex = 0;
             datagridAnswer.SelectionChanged += datagridAnswer_SelectionChanged;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel3.Controls.Add(numericUpDown1);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(numScore);
+            panel3.Controls.Add(txtScoringRubric);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(txtNote);
             panel3.Controls.Add(label5);
@@ -184,20 +178,20 @@
             panel3.Size = new Size(958, 607);
             panel3.TabIndex = 2;
             // 
-            // numericUpDown1
+            // numScore
             // 
-            numericUpDown1.Location = new Point(104, 354);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(240, 39);
-            numericUpDown1.TabIndex = 6;
+            numScore.Location = new Point(104, 354);
+            numScore.Name = "numScore";
+            numScore.Size = new Size(240, 39);
+            numScore.TabIndex = 6;
             // 
-            // textBox1
+            // txtScoringRubric
             // 
-            textBox1.Location = new Point(26, 52);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(910, 293);
-            textBox1.TabIndex = 5;
+            txtScoringRubric.Location = new Point(26, 52);
+            txtScoringRubric.Multiline = true;
+            txtScoringRubric.Name = "txtScoringRubric";
+            txtScoringRubric.Size = new Size(910, 293);
+            txtScoringRubric.TabIndex = 5;
             // 
             // label6
             // 
@@ -237,8 +231,8 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(txtAnswer);
+            panel2.Controls.Add(txtQuestion);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(492, 6);
@@ -246,26 +240,26 @@
             panel2.Size = new Size(958, 467);
             panel2.TabIndex = 1;
             // 
-            // textBox3
+            // txtAnswer
             // 
-            textBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox3.Location = new Point(26, 279);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.ScrollBars = ScrollBars.Vertical;
-            textBox3.Size = new Size(910, 173);
-            textBox3.TabIndex = 7;
+            txtAnswer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtAnswer.Location = new Point(26, 279);
+            txtAnswer.Multiline = true;
+            txtAnswer.Name = "txtAnswer";
+            txtAnswer.ReadOnly = true;
+            txtAnswer.ScrollBars = ScrollBars.Vertical;
+            txtAnswer.Size = new Size(910, 173);
+            txtAnswer.TabIndex = 7;
             // 
-            // textBox2
+            // txtQuestion
             // 
-            textBox2.Location = new Point(25, 49);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(911, 192);
-            textBox2.TabIndex = 6;
-            textBox2.Text = "제1차 세계 대전의 주요 원인과 전쟁의 결과에 대해 설명하시오.\n답변은 주요 원인 3가지와 전쟁 결과 2가지를 포함하여 작성하시오. (배점: 20점)";
+            txtQuestion.Location = new Point(25, 49);
+            txtQuestion.Multiline = true;
+            txtQuestion.Name = "txtQuestion";
+            txtQuestion.ReadOnly = true;
+            txtQuestion.Size = new Size(911, 192);
+            txtQuestion.TabIndex = 6;
+            txtQuestion.Text = "제1차 세계 대전의 주요 원인과 전쟁의 결과에 대해 설명하시오.\n답변은 주요 원인 3가지와 전쟁 결과 2가지를 포함하여 작성하시오. (배점: 20점)";
             // 
             // label3
             // 
@@ -300,7 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)datagridAnswer).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numScore).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -325,10 +319,9 @@
         private Label label3;
         private Label label2;
         private Button btSave;
-        private TextBox textBox1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private NumericUpDown numericUpDown1;
-        private GroupBox groupBox1;
+        private TextBox txtScoringRubric;
+        private TextBox txtAnswer;
+        private TextBox txtQuestion;
+        private NumericUpDown numScore;
     }
 }
