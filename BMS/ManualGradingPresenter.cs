@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BMS.Business.Service;
 using BMS.Data;
 using BMS.Domain.Entity;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace BMS.Winform;
 
@@ -24,18 +25,17 @@ public class ManualGradingPresenter
         this._view = view;
     }
 
-
     public async Task SearchExamInfo()
     {
         var list =await _service.GetExamInformationList();
         _view.UpdateExamInfoList(list);
     }
 
-    public async Task SelectExamData(string examineeId)
+    public async Task SelectExamData(string id)
     {
-        var data = await _service.GetGradingInfoList(examineeId);
+        var data = await _service.GetGradingInfoList(id);
         _view.UpdateGradingInfoList(data);
-        _view.SetTab(1);
+        _view.SetGradingTab();
         _view.InitGridAnswerSelection();
     }
 

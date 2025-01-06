@@ -28,7 +28,6 @@ namespace BMS
             MainServiceProvider = app.Services;
 
             var main = MainServiceProvider.GetRequiredService<FormMain>();
-
             
             Application.Run(main);
         }

@@ -5,6 +5,7 @@ using BMS.Domain.Entity;
 using BMS.Winform;
 using Newtonsoft.Json;
 // ReSharper disable All
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace BMS;
 
@@ -22,6 +23,19 @@ public partial class ManualGradingForm : UserControl
         InitializeComponent();
         datagridGradeProgressList.DataSource = _examInfoList;
         datagridAnswer.DataSource = _gradingInfoList;
+
+        
+        this.BeginInvoke(() =>
+        {
+            if (this.InvokeRequired)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        });
     }
 
     private async void btnSearch_Click(object sender, EventArgs e)
@@ -47,9 +61,9 @@ public partial class ManualGradingForm : UserControl
         data.ForEach(gradeInfo => _gradingInfoList.Add(gradeInfo));
     }
 
-    public void SetTab(int index)
+    public void SetGradingTab()
     {
-        this.tabControl1.SelectedIndex = index;
+        this.tabControl1.SelectedIndex = 1;
     }
 
     public void InitGridAnswerSelection()
