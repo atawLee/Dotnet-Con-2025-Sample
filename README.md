@@ -17,4 +17,7 @@ Framework : .NET 9.0
 
 OS : Windows 
 
+#### 발표 자료
+https://docs.google.com/presentation/d/1xIXqlX0AyjePCfoeOpLpaTw30YYiIAQq/edit?usp=sharing&ouid=108584293830946042675&rtpof=true&sd=true
+
 
